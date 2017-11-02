@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_casus_swt.retrieveSubmitRecords</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>retrieveSubmitRecords</name>
+        <script><![CDATA[var retrieveSubmitRecords = Class.create();
+retrieveSubmitRecords.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	
+	getDepartments: function() {
+		var gr = new GlideRecord('x_casus_callref_department');
+		gr.query();
+		
+		while (gr.next()) {
+			var department = this.newItem("department");
+			department.setAttribute("sys_id", gr.sys_id);
+			department.setAttribute("name",gr.department_name);
+			department.setAttribute("popularity", gr.popularity);
+			department.setAttribute("pinned", gr.getValue('pinned'));
+		}
+	},
+	
+	pinDepartment: function () {
+		var gr = new GlideRecord('x_casus_callref_department');
+		if (gr.get('sys_id', this.getParameter('sysparm_department'))) {
+			if (gr.getValue('pinned') == 0) {
+				gr.setValue("pinned", 'true');
+			} else {
+				gr.setValue("pinned", 'false');
+			}			
+			gr.update();
+		}
+	},
+	
+	
+	submitRecord: function() {
+		var gr = new GlideRecord('x_casus_callref_call_referrals');
+		gr.initialize(); 
+		
+		gr.department = this.getParameter('sysparm_department');
+		gr.details = this.getParameter('sysparm_details');     
+		gr.insert();
+		
+		return true;
+	},
+
+    type: 'retrieveSubmitRecords'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>gg622</sys_created_by>
+        <sys_created_on>2017-11-02 22:57:12</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>7af4ccc00fda8b4012e4348ce1050e66</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>retrieveSubmitRecords</sys_name>
+        <sys_package display_value="Student Work Tracking" source="x_casus_swt">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Student Work Tracking">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_scope>
+        <sys_update_name>sys_script_include_7af4ccc00fda8b4012e4348ce1050e66</sys_update_name>
+        <sys_updated_by>gg622</sys_updated_by>
+        <sys_updated_on>2017-11-02 22:57:12</sys_updated_on>
+    </sys_script_include>
+</record_update>

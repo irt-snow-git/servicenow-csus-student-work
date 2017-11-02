@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition/>
+        <conditional>false</conditional>
+        <name>NormalizePopularity</name>
+        <run_as display_value="Gregory Guzman">8142eaf50a0a3c9e01c438429dc13efa</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2017-11-02 22:57:33</run_start>
+        <run_time>1970-01-01 13:00:00</run_time>
+        <run_type>weekly</run_type>
+        <script><![CDATA[/*
+	This will cut the popularity scores to keep popularities a reasonable score. 
+	Bigger popularities experience bigger reductions.
+	This allows the popularity function to respond to sudden spikes of certain work types, then go back to normal
+*/
+var gr = new GlideRecord('x_casus_callref_department');
+gr.query();
+while (gr.next()) {
+	var currentScore = parseInt(gr.getValue("popularity"));
+	var subtractAmount;
+	var newScore;
+	
+	// If score is too low, causes problem with the algorithm 
+	if (currentScore < 10) {
+		subtractAmount = Math.floor(currentScore/2);
+	} else {
+		subtractAmount = Math.floor(currentScore - Math.log(currentScore) - currentScore/4);
+	}
+	
+	// If score is 1, just set it to 0. A single submission of a dept with 0 will just go to 1, keeping it down.
+	if (currentScore <= 1) {
+		newScore = 0; 
+	} else {
+		newScore = currentScore - subtractAmount;
+	}
+	
+	gr.setValue("popularity", newScore);
+	gr.update();
+}]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>gg622</sys_created_by>
+        <sys_created_on>2017-11-02 22:58:27</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>e02500040fda8b4012e4348ce1050e70</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>NormalizePopularity</sys_name>
+        <sys_package display_value="Student Work Tracking" source="x_casus_swt">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Student Work Tracking">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_scope>
+        <sys_update_name>sysauto_script_e02500040fda8b4012e4348ce1050e70</sys_update_name>
+        <sys_updated_by>gg622</sys_updated_by>
+        <sys_updated_on>2017-11-02 22:58:27</sys_updated_on>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>
