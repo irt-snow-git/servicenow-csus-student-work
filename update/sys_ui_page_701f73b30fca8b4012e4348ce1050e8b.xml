@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description>Allows quick submission of student work with fancy buttons.</description>
+        <direct>false</direct>
+        <endpoint>x_casus_swt_Submit Work Completed.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<script language="javascript" src="https://code.angularjs.org/1.4.0-beta.4/angular.js" />
+<script src="x_casus_swt.angular_controller.jsdbx"></script>
+<style>
+	
+body {
+	background-color: #f2f7f7 !important;
+}
+	
+.btn-pin {
+	background-color: #C3DBDB;
+	opacity: 0;
+	padding: 0px;
+	border-radius: 50%;
+	margin-left: 8px;
+	padding: 5px;
+	transition: opacity .75s;
+}
+	
+.btn-pin:hover {
+	background-color: #a6c9c9
+	
+}
+.btn-pin.pinned {
+	box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+	background-color: #93CFFF;
+}
+
+.btn-grey {
+	background-color: cadetblue  !important;
+	letter-spacing: 1px;
+	color: white;
+	transition: background-color .5s, box-shadow .5s, color .5s;
+}
+
+
+.btn-grey:hover {
+	background-color: lightblue  !important;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+	
+.btn-grey:focus {
+	color: white;
+	border: 1px solid lawngreen;
+}
+	
+.btn-grey:focus:hover {
+	color: black;
+	border: 1px solid lawngreen;
+}
+	
+.btn-submit-other {
+	padding: 5px !important;
+	background-color: steelblue;
+	letter-spacing: 1px;
+	color: white;
+	transition: background-color .5s, box-shadow .5s, color .5s;
+	margin-top: 15px;
+	width: 100%;" 	
+}
+	
+.btn-submit-other:hover {
+	color: white;
+	background-color: steelblue;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+	}
+	
+.fav {
+	background-color: steelblue  !important;
+}
+	
+.fav:focus {
+	color: white;
+	border: 1px solid deepskyblue;
+}
+.fav:focus:hover {
+	color: black;
+	border: 1px solid lawngreen;
+}
+
+.chunk:hover .btn-pin {
+	opacity: 1;
+}
+.panel-shadow {
+    -webkit-box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+}
+
+.panel-slide {
+	padding: 30px;
+    margin-top: 100px;
+}
+	
+.panel-other {
+	position: fixed;
+    padding: 20px;
+    z-index: 200;
+	top: 50%;
+	left: 50%;
+	width: 400px;
+    margin-top: -200px;
+    margin-left: -200px;
+}
+	
+.glyphicon{
+	font-size: 25px;
+	right: 1px;
+	top: 3px;
+}
+	
+.input-fat {
+	height: 30px;
+	font-size: 15px;
+}
+	
+.btn-close {
+	padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    -webkit-appearance: none;
+    margin-top: -15px;
+    margin-right: -9px;
+}
+
+[type="radio"]:not(:checked)+label, [type="radio"]:checked+label {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    display: inline-block;
+    height: 25px;
+	text-align: left;
+    line-height: 25px;
+    font-size: 1.7rem;
+    transition: .28s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+	
+[type="radio"]:not(:checked),[type="radio"]:checked {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+}
+
+[type="radio"]:not(:checked)+label,[type="radio"]:checked+label {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    font-size: 1.7rem;
+    transition: .28s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+[type="radio"]+label:before,[type="radio"]+label:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 4px;
+    width: 16px;
+    height: 16px;
+    z-index: 0;
+    transition: .28s ease
+}
+
+[type="radio"]:not(:checked)+label:before,[type="radio"]:not(:checked)+label:after,[type="radio"]:checked+label:before,[type="radio"]:checked+label:after,[type="radio"].with-gap:checked+label:before,[type="radio"].with-gap:checked+label:after {
+    border-radius: 50%
+}
+
+[type="radio"]:not(:checked)+label:before,[type="radio"]:not(:checked)+label:after {
+    border: 2px solid #5a5a5a
+}
+
+[type="radio"]:not(:checked)+label:after {
+    -webkit-transform: scale(0);
+    transform: scale(0)
+}
+
+[type="radio"]:checked+label:before {
+    border: 2px solid transparent
+}
+
+[type="radio"]:checked+label:after,[type="radio"].with-gap:checked+label:before,[type="radio"].with-gap:checked+label:after {
+    border: 2px solid #26a69a
+}
+
+[type="radio"]:checked+label:after,[type="radio"].with-gap:checked+label:after {
+    background-color: #26a69a
+}
+
+[type="radio"]:checked+label:after {
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02)
+}
+
+[type="radio"].with-gap:checked+label:after {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5)
+}
+
+[type="radio"].tabbed:focus+label:before {
+    box-shadow: 0 0 0 10px rgba(0,0,0,0.1)
+}
+
+[type="radio"].with-gap:disabled:checked+label:before {
+    border: 2px solid rgba(0,0,0,0.26)
+}
+
+[type="radio"].with-gap:disabled:checked+label:after {
+    border: none;
+    background-color: rgba(0,0,0,0.26)
+}
+
+[type="radio"]:disabled:not(:checked)+label:before,[type="radio"]:disabled:checked+label:before {
+    background-color: transparent;
+    border-color: rgba(0,0,0,0.26)
+}
+
+[type="radio"]:disabled+label {
+    color: rgba(0,0,0,0.26)
+}
+
+[type="radio"]:disabled:not(:checked)+label:before {
+    border-color: rgba(0,0,0,0.26)
+}
+
+[type="radio"]:disabled:checked+label:after {
+    background-color: rgba(0,0,0,0.26);
+    border-color: #BDBDBD
+}
+	
+#mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(0,0,0,0.4);
+}
+	
+
+
+</style>
+	
+<div ng-app="myApp">
+	
+	<div class="container full-height" id="main-div">
+		<div ng-controller="CallReferralsController">
+			
+			<!-- - - - - - Options Panel - - - - - - -->
+			<div class="container col-sm-3" style="position: fixed;">
+				<div class="panel panel-shadow panel-slide">
+					<h3>Search  </h3>
+					<input class="form-control input-fat" ng-model="searchText"/>
+					<form name="sortForm">
+						<h3> Sort By </h3>
+						<p>
+							<input id="radio_sort_pop" type="radio" ng-model="customOrder" value="-popularity"/>
+							<label for="radio_sort_pop">Popularity</label>
+						</p>
+						<p>
+							<input id="radio_sort_name" type="radio" ng-model="customOrder" 
+								   value="name" ng-checked="true"/>
+							<label for="radio_sort_name">Name</label>
+						</p>
+					</form>
+				</div>
+			</div>
+			<!-- - - - - -End Options Panel - - - - - -->
+			
+			<!-- - - - -  Departments List Panel - - -->
+			<div class="panel panel-shadow col-sm-8 col-sm-offset-1" style="left: 30%;">
+				<div class="center-block col-sm-12 ng-cloak" style="padding-bottom: 25px;">
+					<div ng-repeat="dept in depts | orderBy: ['-pinned', customOrder] | filter:searchText track by $index" style="padding:30px">
+						<div class="chunk col-sm-12">
+							<button id="{{dept.name}}_btn" type="button" 
+									ng-class="{'btn-grey btn btn-lg col-sm-9 fav': dept.pinned == true,
+											  'btn-grey btn btn-lg col-sm-9': dept.pinned == false}" 
+									style="padding: 10px" ng-click="submit(dept)">
+								{{dept.name}}
+							</button>
+							<button ng-class="{'btn btn-pin col-sm-1':dept.pinned == false, 'btn btn-pin col-sm-1 pinned': dept.pinned == true}"
+									ng-click="pin(dept)" >
+								<span ng-class="{'glyphicon glyphicon-heart-empty': dept.pinned == false,
+												'glyphicon glyphicon-heart': dept.pinned == true}"
+									  aria-hidden="true">
+								</span>
+							</button>
+							<!-- Can use later for phone functionality 
+							<button ng-class="{'btn btn-pin col-sm-1':dept.pinned == false, 'btn btn-pin col-sm-1 pinned': dept.pinned == true}"
+									ng-click="pin(dept)" >
+								<span class="glyphicon glyphicon-earphone" aria-hidden="true">
+								</span>
+							</button>
+							-->
+						</div>
+					</div>
+					<!-- End Repeat -->
+					
+					<!-- 'Other' button always shows, regardless of filter -->
+					<div style="padding:30px">
+						<div class="chunk col-sm-12">
+							<!-- Panel -->
+							<div id="details_panel" class="panel panel-shadow panel-other clickOutside" ng-show="isPopupVisible">
+								<button type="button" aria-label="Close" ng-click="closePopup()" class="btn btn-close pull-right">
+									<span aria-hidden="true">x</span>
+								</button>
+								<h4> Provide a short description </h4>
+								
+								<input id="details_input" type="text" class="form-control" ng-model="short_description"/>
+								<button class="btn btn-submit-other" ng-click="submitOther()"> Submit</button>
+							</div>
+							<!-- End Panel -->
+							<button style="padding: 10px;background-color: darkseagreen !important;" id="other_btn" 
+									type="button" class="btn-grey btn btn-lg col-sm-9" 
+									ng-click="openPopup()">Other
+							</button>
+						</div>	
+					</div>
+					<!-- End 'Other' Button Stuff-->
+				</div>
+			</div>
+			<!-- - - - -  End Departments List Panel - - - -  -->
+		
+			<div id="mask" ng-hide="isPopupVisible == false">
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+</j:jelly>]]></html>
+        <name>Submit Work Completed</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>gg622</sys_created_by>
+        <sys_created_on>2017-11-02 22:32:56</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>701f73b30fca8b4012e4348ce1050e8b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Submit Work Completed</sys_name>
+        <sys_package display_value="Student Work Tracking" source="x_casus_swt">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Student Work Tracking">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_scope>
+        <sys_update_name>sys_ui_page_701f73b30fca8b4012e4348ce1050e8b</sys_update_name>
+        <sys_updated_by>gg622</sys_updated_by>
+        <sys_updated_on>2017-11-02 22:32:56</sys_updated_on>
+    </sys_ui_page>
+</record_update>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Controller for Submission page.</description>
+        <global>false</global>
+        <name>x_casus_swt.angular_controller</name>
+        <script><![CDATA[var myApp = angular.module('myApp', []);
+var departmentReferences = [];
+departmentReferences = getDepartmentReferences(); 
+
+// - - - Begin Controller - - - //
+myApp.controller('CallReferralsController', ['$scope', function ($scope) {
+	$scope.async = 0;
+	$scope.depts = [];
+	$scope.depts = departmentReferences;
+	$scope.otherSysID = otherSysID; // For submitting other aka misc work types that don't exist yet
+	$scope.customOrder = "name";
+	$scope.isPopupVisible = false;
+	$scope.isPopupReady = false;
+	$scope.short_description = ''; // Used when submitting 'Other' type
+	$scope.async = 1;
+	// - - - - End Init - - - -//
+	
+	// - - - - Functions - - -//
+	$scope.pin = function (dept) {	
+		if (dept.pinned == '0') {dept.pinned = '1';} else {dept.pinned = '0';}
+		var ajax = new GlideAjax('x_casus_callref.retrieveSubmitRecords');
+			ajax.addParam('sysparm_name','pinDepartment');
+			ajax.addParam('sysparm_department', dept.sys_id);
+			ajax.getXML(function ()  {
+			});
+		
+	};
+	
+	$scope.submit = function (dept) {			
+			//Call to server to actually submit
+			var ajax = new GlideAjax('x_casus_callref.retrieveSubmitRecords');
+			ajax.addParam('sysparm_name','submitRecord');
+			ajax.addParam('sysparm_department', dept.sys_id);
+			//ajax.addParam('sys_parasdde', $scope.short_description);
+			ajax.getXML(function ()  { });
+			//Some magic math to give low scores a bigger boost in popularity, higher scores less
+			//This is done server-side, but do it client side too for responsiveness
+			var currentScore = parseInt(dept.popularity);
+			var numSub = Math.floor(currentScore + (Math.log(currentScore) * 15));
+			var bonus = Math.round(80/(numSub-currentScore)) + 1;
+			if (bonus === Infinity) bonus = 15; //Edge case
+			dept.popularity = currentScore + bonus;	
+	};
+	
+	$scope.submitOther = function () {
+		var ajax = new GlideAjax('x_casus_callref.retrieveSubmitRecords');
+		ajax.addParam('sysparm_name','submitRecord');
+		ajax.addParam('sysparm_department', $scope.otherSysID);
+		ajax.addParam('sysparm_details', $scope.short_description);
+		ajax.getXML(function ()  { });
+		$scope.closePopup();
+	};
+	$scope.openPopup = function () {
+		$scope.isPopupVisible = true;
+		//Get focus after delay so element is attached to DOM 
+		setTimeout(function() { $('details_input').focus(); $scope.isPopupReady = true; }, 200);
+	};
+	$scope.closePopup = function () {
+		$scope.isPopupVisible = false;
+		$scope.short_description = '';
+		$scope.isPopupReady = false;
+	};
+	// - - -END Functions - - - //
+}])// - - -END Controller- - - //
+
+// - - - Begin Directives - - - //
+
+/* Checks whether the user clicks outside the popup */
+
+.directive('clickOutside', function ($document) {
+	return {
+		restrict: 'C',
+		link: function (scope, el, attr) {
+			
+			scope.clickOutside = function () {
+				scope.closePopup();
+			};
+			
+			$document.on('click', function (e) {
+				if (el !== e.target && !el[0].contains(e.target) && scope.isPopupReady == true) {
+					scope.$apply(function () {
+						scope.$eval(scope.clickOutside);
+					});
+				}
+			});
+		}
+	};
+})
+
+.directive('focus', function($timeout) {
+	return {
+		scope : {
+			trigger : '@focus'
+		},
+		link : function(scope, element) {
+			scope.$watch('trigger', function(value) {
+				if (value === "true") {
+					$timeout(function() {
+						element[0].focus();
+					});
+				}
+			});
+		}
+	};
+}) // - - - End Directives - - - //
+
+;//- - - - -End App- - - - -//
+
+
+// - - - Handlers and Other Functions - - - //
+
+function handleGetDepartments(response) {
+	var departments = response.responseXML.getElementsByTagName("department");
+	for (var i = 0; i < departments.length; i++ ) {
+		//Temp object to push
+		var ref = {
+			"sys_id":"",
+			"popularity":"",
+			"pinned": "",
+			"name":""
+		};
+		//Fill temp obj with values from XML
+		ref.sys_id = departments[i].getAttribute("sys_id");
+		ref.name = departments[i].getAttribute("name");
+		ref.popularity = parseInt(departments[i].getAttribute("popularity"));
+		ref.pinned = departments[i].getAttribute("pinned");
+		//Magic string, should set it somewhere - Basically checking for the "Other" dept
+		if (departments[i].getAttribute("name") != 'Other') {
+			departmentReferences.push(ref);
+		} else {
+			otherSysID = departments[i].getAttribute("sys_id");
+		}
+		//departmentReferences.push(ref);
+	}//End For//
+}
+
+/*
+Uses a global variable to store all the supplies
+*/
+function getDepartmentReferences() {
+	var ajax = new GlideAjax('x_casus_callref.retrieveSubmitRecords');
+	ajax.addParam('sysparm_name','getDepartments');
+	ajax.getXML(handleGetDepartments);
+	ajax.getXMLWait();
+	//Now references should be set and angular can use them
+	return departmentReferences;
+}]]></script>
+        <script_name>angular_controller</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>gg622</sys_created_by>
+        <sys_created_on>2017-11-02 22:32:42</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>8d5ff3b30fca8b4012e4348ce1050e23</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_casus_swt.angular_controller</sys_name>
+        <sys_package display_value="Student Work Tracking" source="x_casus_swt">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Student Work Tracking">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_scope>
+        <sys_update_name>sys_ui_script_8d5ff3b30fca8b4012e4348ce1050e23</sys_update_name>
+        <sys_updated_by>gg622</sys_updated_by>
+        <sys_updated_on>2017-11-02 22:32:42</sys_updated_on>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>
