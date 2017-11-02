@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Work Type" max_length="40" name="x_casus_swt_work_type" type="collection">
+        <element label="Pinned" max_length="40" name="pinned" type="boolean"/>
+        <element label="Popularity" max_length="40" name="popularity" type="integer"/>
+        <element label="Name" max_length="40" name="work_name" type="string"/>
+    </element>
+</database>
