@@ -36,9 +36,9 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 	
-	var gr = new GlideRecord("x_casus_callref_department");
-	var dept = current.department;
-	if (gr.get(dept)) {
+	var gr = new GlideRecord("x_casus_swt_work_type");
+	var work = current.work;
+	if (gr.get(work)) {
 		//Some magic math to give low scores a bigger boost in popularity, higher scores less
 		var currentScore = parseInt(gr.getValue("popularity"));
 		var numSub = Math.floor(currentScore + (Math.log(currentScore) * 15));
@@ -49,7 +49,7 @@
 		gr.update();
 		gs.addInfoMessage('Your work was successfully submitted.');
 	} else {
-		gs.info("Error - Popularity Lookup Failed for ->" + dept);
+		gs.info("Error - Popularity Lookup Failed for ->" + work);
 	}
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
@@ -58,7 +58,7 @@
         <sys_customer_update>true</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_id>3ba44cc00fda8b4012e4348ce1050ebc</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>UpdatePopularityOfDepartment</sys_name>
         <sys_overrides/>
         <sys_package display_value="Student Work Tracking" source="x_casus_swt">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_package>
@@ -67,7 +67,7 @@
         <sys_scope display_value="Student Work Tracking">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_scope>
         <sys_update_name>sys_script_3ba44cc00fda8b4012e4348ce1050ebc</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-11-02 22:56:39</sys_updated_on>
+        <sys_updated_on>2017-11-02 23:05:31</sys_updated_on>
         <template/>
         <when>after</when>
     </sys_script>

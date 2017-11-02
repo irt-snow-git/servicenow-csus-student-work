@@ -268,94 +268,84 @@ body {
 </style>
 	
 <div ng-app="myApp">
-	
-	<div class="container full-height" id="main-div">
-		<div ng-controller="CallReferralsController">
-			
-			<!-- - - - - - Options Panel - - - - - - -->
-			<div class="container col-sm-3" style="position: fixed;">
-				<div class="panel panel-shadow panel-slide">
-					<h3>Search  </h3>
-					<input class="form-control input-fat" ng-model="searchText"/>
-					<form name="sortForm">
-						<h3> Sort By </h3>
-						<p>
-							<input id="radio_sort_pop" type="radio" ng-model="customOrder" value="-popularity"/>
-							<label for="radio_sort_pop">Popularity</label>
-						</p>
-						<p>
-							<input id="radio_sort_name" type="radio" ng-model="customOrder" 
-								   value="name" ng-checked="true"/>
-							<label for="radio_sort_name">Name</label>
-						</p>
-					</form>
-				</div>
-			</div>
-			<!-- - - - - -End Options Panel - - - - - -->
-			
-			<!-- - - - -  Departments List Panel - - -->
-			<div class="panel panel-shadow col-sm-8 col-sm-offset-1" style="left: 30%;">
-				<div class="center-block col-sm-12 ng-cloak" style="padding-bottom: 25px;">
-					<div ng-repeat="dept in depts | orderBy: ['-pinned', customOrder] | filter:searchText track by $index" style="padding:30px">
-						<div class="chunk col-sm-12">
-							<button id="{{dept.name}}_btn" type="button" 
-									ng-class="{'btn-grey btn btn-lg col-sm-9 fav': dept.pinned == true,
-											  'btn-grey btn btn-lg col-sm-9': dept.pinned == false}" 
-									style="padding: 10px" ng-click="submit(dept)">
-								{{dept.name}}
-							</button>
-							<button ng-class="{'btn btn-pin col-sm-1':dept.pinned == false, 'btn btn-pin col-sm-1 pinned': dept.pinned == true}"
-									ng-click="pin(dept)" >
-								<span ng-class="{'glyphicon glyphicon-heart-empty': dept.pinned == false,
-												'glyphicon glyphicon-heart': dept.pinned == true}"
-									  aria-hidden="true">
-								</span>
-							</button>
-							<!-- Can use later for phone functionality 
-							<button ng-class="{'btn btn-pin col-sm-1':dept.pinned == false, 'btn btn-pin col-sm-1 pinned': dept.pinned == true}"
-									ng-click="pin(dept)" >
-								<span class="glyphicon glyphicon-earphone" aria-hidden="true">
-								</span>
-							</button>
-							-->
-						</div>
-					</div>
-					<!-- End Repeat -->
-					
-					<!-- 'Other' button always shows, regardless of filter -->
-					<div style="padding:30px">
-						<div class="chunk col-sm-12">
-							<!-- Panel -->
-							<div id="details_panel" class="panel panel-shadow panel-other clickOutside" ng-show="isPopupVisible">
-								<button type="button" aria-label="Close" ng-click="closePopup()" class="btn btn-close pull-right">
-									<span aria-hidden="true">x</span>
-								</button>
-								<h4> Provide a short description </h4>
-								
-								<input id="details_input" type="text" class="form-control" ng-model="short_description"/>
-								<button class="btn btn-submit-other" ng-click="submitOther()"> Submit</button>
-							</div>
-							<!-- End Panel -->
-							<button style="padding: 10px;background-color: darkseagreen !important;" id="other_btn" 
-									type="button" class="btn-grey btn btn-lg col-sm-9" 
-									ng-click="openPopup()">Other
-							</button>
-						</div>	
-					</div>
-					<!-- End 'Other' Button Stuff-->
-				</div>
-			</div>
-			<!-- - - - -  End Departments List Panel - - - -  -->
-		
-			<div id="mask" ng-hide="isPopupVisible == false">
-			</div>
-		</div>
-	</div>
-
+   <div class="container full-height" id="main-div">
+	   
+      <div ng-controller="StudentWorkController">
+         <!-- - - - - - Options Panel - - - - - - -->
+         <div class="container col-sm-3" style="position: fixed;">
+            <div class="panel panel-shadow panel-slide">
+               <h3>Search  </h3>
+               <input class="form-control input-fat" ng-model="searchText"/>
+               <form name="sortForm">
+                  <h3> Sort By </h3>
+                  <p>
+                     <input id="radio_sort_pop" type="radio" ng-model="customOrder" value="-popularity"/>
+                     <label for="radio_sort_pop">Popularity</label>
+                  </p>
+                  <p>
+                     <input id="radio_sort_name" type="radio" ng-model="customOrder" 
+                        value="name" ng-checked="true"/>
+                     <label for="radio_sort_name">Name</label>
+                  </p>
+               </form>
+            </div>
+         </div>
+         <!-- - - - - -End Options Panel - - - - - -->
+         <!-- - - - -  Departments List Panel - - -->
+         <div class="panel panel-shadow col-sm-8 col-sm-offset-1" style="left: 30%;">
+            <div class="center-block col-sm-12 ng-cloak" style="padding-bottom: 25px;">
+               <div ng-repeat="work in works | orderBy: ['-pinned', customOrder] | filter:searchText track by $index" style="padding:30px">
+                  <div class="chunk col-sm-12">
+                     <button id="{{work.name}}_btn" type="button" 
+                        ng-class="{'btn-grey btn btn-lg col-sm-9 fav': work.pinned == true,
+                        'btn-grey btn btn-lg col-sm-9': work.pinned == false}" 
+                        style="padding: 10px" ng-click="submit(work)">
+                     {{work.name}}
+                     </button>
+                     <button ng-class="{'btn btn-pin col-sm-1':work.pinned == false, 'btn btn-pin col-sm-1 pinned': work.pinned == true}"
+                        ng-click="pin(work)" >
+                     <span ng-class="{'glyphicon glyphicon-heart-empty': work.pinned == false,
+                        'glyphicon glyphicon-heart': work.pinned == true}"
+                        aria-hidden="true">
+                     </span>
+                     </button>
+                     <!-- Can use later for phone functionality 
+                        <button ng-class="{'btn btn-pin col-sm-1':work.pinned == false, 'btn btn-pin col-sm-1 pinned': work.pinned == true}"
+                        		ng-click="pin(work)" >
+                        	<span class="glyphicon glyphicon-earphone" aria-hidden="true">
+                        	</span>
+                        </button>
+                        -->
+                  </div>
+               </div>
+               <!-- End Repeat -->
+               <div style="padding:30px">
+                  <div class="chunk col-sm-12">
+                     <!-- Popup panel -->
+                     <div id="details_panel" class="panel panel-shadow panel-other clickOutside" ng-show="isPopupVisible">
+                        <button type="button" aria-label="Close" ng-click="closePopup()" class="btn btn-close pull-right">
+                        <span aria-hidden="true">x</span>
+                        </button>
+                        <h4> Provide a short description </h4>
+                        <input id="details_input" type="text" class="form-control" ng-model="short_description"/>
+                        <button class="btn btn-submit-other" ng-click="submitOther()"> Submit</button>
+                     </div>
+                     <!-- End Panel -->
+                     <!-- 'Other' button always shows, regardless of filter -->
+                     <button style="padding: 10px;background-color: darkseagreen !important;" id="other_btn" 
+                        type="button" class="btn-grey btn btn-lg col-sm-9" 
+                        ng-click="openPopup()">Other
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- - - - -  End Work Types List Panel - - - -  -->
+         <div id="mask" ng-hide="isPopupVisible == false">
+         </div>
+      </div>
+   </div>
 </div>
-
-
-
 </j:jelly>]]></html>
         <name>Submit Work Completed</name>
         <processing_script/>
@@ -364,7 +354,7 @@ body {
         <sys_created_on>2017-11-02 22:32:56</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>701f73b30fca8b4012e4348ce1050e8b</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Submit Work Completed</sys_name>
         <sys_package display_value="Student Work Tracking" source="x_casus_swt">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_package>
         <sys_policy/>
@@ -372,6 +362,6 @@ body {
         <sys_scope display_value="Student Work Tracking">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_scope>
         <sys_update_name>sys_ui_page_701f73b30fca8b4012e4348ce1050e8b</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-11-02 22:32:56</sys_updated_on>
+        <sys_updated_on>2017-11-02 23:35:28</sys_updated_on>
     </sys_ui_page>
 </record_update>

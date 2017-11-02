@@ -10,22 +10,22 @@
         <script><![CDATA[var retrieveSubmitRecords = Class.create();
 retrieveSubmitRecords.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	
-	getDepartments: function() {
-		var gr = new GlideRecord('x_casus_callref_department');
+	getWorkTypes: function() {
+		var gr = new GlideRecord('x_casus_swt_work_type');
 		gr.query();
 		
 		while (gr.next()) {
-			var department = this.newItem("department");
-			department.setAttribute("sys_id", gr.sys_id);
-			department.setAttribute("name",gr.department_name);
-			department.setAttribute("popularity", gr.popularity);
-			department.setAttribute("pinned", gr.getValue('pinned'));
+			var work = this.newItem("work");
+			work.setAttribute("sys_id", gr.sys_id);
+			work.setAttribute("name", gr.work_name);
+			work.setAttribute("popularity", gr.popularity);
+			work.setAttribute("pinned", gr.getValue('pinned'));
 		}
 	},
 	
-	pinDepartment: function () {
-		var gr = new GlideRecord('x_casus_callref_department');
-		if (gr.get('sys_id', this.getParameter('sysparm_department'))) {
+	pinWorkType: function () {
+		var gr = new GlideRecord('x_casus_swt_work_type');
+		if (gr.get('sys_id', this.getParameter('sysparm_work'))) {
 			if (gr.getValue('pinned') == 0) {
 				gr.setValue("pinned", 'true');
 			} else {
@@ -37,11 +37,11 @@ retrieveSubmitRecords.prototype = Object.extendsObject(global.AbstractAjaxProces
 	
 	
 	submitRecord: function() {
-		var gr = new GlideRecord('x_casus_callref_call_referrals');
+		var gr = new GlideRecord('x_casus_swt_work_completed');
 		gr.initialize(); 
 		
-		gr.department = this.getParameter('sysparm_department');
-		gr.details = this.getParameter('sysparm_details');     
+		gr.department = this.getParameter('sysparm_work');
+		gr.details = this.getParameter('sysparm_other_info');     
 		gr.insert();
 		
 		return true;
@@ -54,7 +54,7 @@ retrieveSubmitRecords.prototype = Object.extendsObject(global.AbstractAjaxProces
         <sys_created_on>2017-11-02 22:57:12</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>7af4ccc00fda8b4012e4348ce1050e66</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>retrieveSubmitRecords</sys_name>
         <sys_package display_value="Student Work Tracking" source="x_casus_swt">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_package>
         <sys_policy>read</sys_policy>
@@ -62,6 +62,6 @@ retrieveSubmitRecords.prototype = Object.extendsObject(global.AbstractAjaxProces
         <sys_scope display_value="Student Work Tracking">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_scope>
         <sys_update_name>sys_script_include_7af4ccc00fda8b4012e4348ce1050e66</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-11-02 22:57:12</sys_updated_on>
+        <sys_updated_on>2017-11-02 23:26:43</sys_updated_on>
     </sys_script_include>
 </record_update>
