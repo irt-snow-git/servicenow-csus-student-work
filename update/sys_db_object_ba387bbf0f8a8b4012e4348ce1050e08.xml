@@ -14,7 +14,7 @@
         <label>Work Completed</label>
         <live_feed_enabled>false</live_feed_enabled>
         <name>x_casus_swt_work_completed</name>
-        <number_ref/>
+        <number_ref display_value="WORK">88ee77730fca8b4012e4348ce1050e3c</number_ref>
         <provider_class/>
         <read_access>true</read_access>
         <super_class display_value="Task" name="task">726719eb0a0a3c740056d75fb10e7807</super_class>
@@ -23,7 +23,7 @@
         <sys_created_on>2017-11-02 22:01:43</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>ba387bbf0f8a8b4012e4348ce1050e08</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Work Completed</sys_name>
         <sys_package display_value="Student Work Tracking" source="x_casus_swt">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_package>
         <sys_policy/>
@@ -31,7 +31,7 @@
         <sys_scope display_value="Student Work Tracking">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_scope>
         <sys_update_name>sys_db_object_ba387bbf0f8a8b4012e4348ce1050e08</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-11-02 22:01:43</sys_updated_on>
+        <sys_updated_on>2017-11-02 22:30:13</sys_updated_on>
         <update_access>false</update_access>
         <user_role display_value="x_casus_swt_work_completed_user" name="x_casus_swt_work_completed_user">ea58b3fb0f8a8b4012e4348ce1050eb1</user_role>
         <ws_access>true</ws_access>
