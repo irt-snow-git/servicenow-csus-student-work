@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
-    <element extends="task" label="Work Completed" max_length="40" name="x_casus_swt_work_completed" type="collection">
+    <element extends="task" label="Work Completed" max_length="40" name="x_casus_swt_work_completed" sizeclass="11" type="collection">
         <element label="Course" max_length="40" name="course" type="string"/>
         <element label="Faculty" max_length="40" name="faculty" type="string"/>
         <element label="Additional Info" max_length="40" name="other_info" type="string"/>

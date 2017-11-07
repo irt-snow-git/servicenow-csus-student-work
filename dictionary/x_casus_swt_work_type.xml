@@ -3,6 +3,9 @@
     <element label="Work Type" max_length="40" name="x_casus_swt_work_type" type="collection">
         <element label="Pinned" max_length="40" name="pinned" type="boolean"/>
         <element label="Popularity" max_length="40" name="popularity" type="integer"/>
-        <element label="Name" mandatory="true" max_length="80" name="work_name" type="string"/>
+        <element display="true" label="Name" mandatory="true" max_length="100" name="work_name" type="string" unique="true"/>
+        <index name="index">
+            <element name="work_name"/>
+        </index>
     </element>
 </database>

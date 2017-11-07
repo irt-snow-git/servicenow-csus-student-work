@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element extends="sys_import_set_row" label="Imp Tmpl X Casus Swt Work Type" max_length="40" name="u_imp_tmpl_x_casus_swt_work_type" type="collection">
+        <element attributes="import_attribute_name=Name,edge_encryption_enabled=true" label="Name" max_length="80" name="u_name" type="string"/>
+        <element attributes="import_attribute_name=Pinned,edge_encryption_enabled=true" label="Pinned" max_length="40" name="u_pinned" type="string"/>
+        <element attributes="import_attribute_name=Popularity" label="Popularity" max_length="40" name="u_popularity" type="integer"/>
+    </element>
+</database>
