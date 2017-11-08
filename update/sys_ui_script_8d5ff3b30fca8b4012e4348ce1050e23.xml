@@ -18,7 +18,10 @@ myApp.controller('StudentWorkController', ['$scope', function ($scope) {
 	$scope.customOrder = "name";
 	$scope.isPopupVisible = false;
 	$scope.isPopupReady = false;
-	$scope.short_description = ''; // Used when submitting 'Other' type
+	$scope.activeWorkID = "";      // When popup is active, this has the current work type obj (and sys_id)
+	$scope.short_description = ''; 
+	$scope.faculty_name = ''; 
+	$scope.relevant_course = '';
 	$scope.async = 1;
 	// - - - - End Init - - - -//
 	
@@ -33,12 +36,17 @@ myApp.controller('StudentWorkController', ['$scope', function ($scope) {
 		
 	};
 	
+	/* Use: Actually does ajax call to Script Include to submit the record
+		Parameter: work -> expects a javascript object
+	*/
 	$scope.submit = function (work) {			
 			//Call to server to actually submit
 			var ajax = new GlideAjax('x_casus_swt.retrieveSubmitRecords');
 			ajax.addParam('sysparm_name','submitRecord');
 			ajax.addParam('sysparm_work', work.sys_id);
-			//ajax.addParam('sys_parasdde', $scope.short_description);
+			ajax.addParam('sysparm_faculty', $scope.faculty_name);
+			ajax.addParam('sysparm_course', $scope.relevant_course);
+			ajax.addParam('sysparm_other_info', $scope.short_description);
 			ajax.getXML(function ()  { });
 			//Some magic math to give low scores a bigger boost in popularity, higher scores less
 			//This is done server-side, but do it client side too for responsiveness
@@ -47,24 +55,36 @@ myApp.controller('StudentWorkController', ['$scope', function ($scope) {
 			var bonus = Math.round(80/(numSub-currentScore)) + 1;
 			if (bonus === Infinity) bonus = 15; //Edge case
 			work.popularity = currentScore + bonus;	
+			$scope.closePopup();
 	};
 	
 	$scope.submitOther = function () {
 		var ajax = new GlideAjax('x_casus_swt.retrieveSubmitRecords');
 		ajax.addParam('sysparm_name','submitRecord');
 		ajax.addParam('sysparm_work', $scope.otherSysID);
+		ajax.addParam('sysparm_faculty', $scope.faculty_name);
+		ajax.addParam('sysparm_course', $scope.relevant_course);
 		ajax.addParam('sysparm_other_info', $scope.short_description);
 		ajax.getXML(function ()  { });
 		$scope.closePopup();
 	};
-	$scope.openPopup = function () {
+	$scope.openPopup = function (workObj) {
 		$scope.isPopupVisible = true;
+		//Since this can be called without a workOobj, check to see if null
+		if (workObj) {
+			$scope.activeWorkID = workObj;
+			console.log("Popup Active with work id -> " + workObj.name);
+		}
 		//Get focus after delay so element is attached to DOM 
-		setTimeout(function() { $('details_input').focus(); $scope.isPopupReady = true; }, 200);
+		setTimeout(function() { $('faculty_input').focus(); $scope.isPopupReady = true; }, 200);
 	};
 	$scope.closePopup = function () {
 		$scope.isPopupVisible = false;
+		//Reset fields to blank
+		$scope.faculty_name = '';
+		$scope.relevant_course = '';
 		$scope.short_description = '';
+		$scope.activeWorkID = "";
 		$scope.isPopupReady = false;
 	};
 	// - - -END Functions - - - //
@@ -157,7 +177,7 @@ function getWorkTypeReferences() {
         <sys_created_on>2017-11-02 22:32:42</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>8d5ff3b30fca8b4012e4348ce1050e23</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>x_casus_swt.angular_controller</sys_name>
         <sys_package display_value="Student Work Tracking" source="x_casus_swt">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_package>
         <sys_policy/>
@@ -165,7 +185,7 @@ function getWorkTypeReferences() {
         <sys_scope display_value="Student Work Tracking">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_scope>
         <sys_update_name>sys_ui_script_8d5ff3b30fca8b4012e4348ce1050e23</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-11-02 23:27:59</sys_updated_on>
+        <sys_updated_on>2017-11-08 00:52:41</sys_updated_on>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
 </record_update>

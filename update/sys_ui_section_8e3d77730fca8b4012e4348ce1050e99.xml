@@ -5,13 +5,13 @@
             <element>number</element>
             <position>0</position>
             <sys_created_by>gg622</sys_created_by>
-            <sys_created_on>2017-11-02 22:24:35</sys_created_on>
-            <sys_id>619d3b730fca8b4012e4348ce1050e6b</sys_id>
+            <sys_created_on>2017-11-08 00:48:10</sys_created_on>
+            <sys_id>396e8a650f92430012e4348ce1050e83</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_casus_swt_work_completed" sys_domain="global" view="Default view">8e3d77730fca8b4012e4348ce1050e99</sys_ui_section>
             <sys_updated_by>gg622</sys_updated_by>
-            <sys_updated_on>2017-11-02 22:24:35</sys_updated_on>
+            <sys_updated_on>2017-11-08 00:48:10</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -19,55 +19,83 @@
             <element>work</element>
             <position>1</position>
             <sys_created_by>gg622</sys_created_by>
-            <sys_created_on>2017-11-02 22:24:35</sys_created_on>
-            <sys_id>e19d3b730fca8b4012e4348ce1050e6b</sys_id>
+            <sys_created_on>2017-11-08 00:48:10</sys_created_on>
+            <sys_id>b96e8a650f92430012e4348ce1050e83</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_casus_swt_work_completed" sys_domain="global" view="Default view">8e3d77730fca8b4012e4348ce1050e99</sys_ui_section>
             <sys_updated_by>gg622</sys_updated_by>
-            <sys_updated_on>2017-11-02 22:24:35</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>.split</element>
-            <position>2</position>
-            <sys_created_by>gg622</sys_created_by>
-            <sys_created_on>2017-11-02 22:24:35</sys_created_on>
-            <sys_id>659d3b730fca8b4012e4348ce1050e6b</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_casus_swt_work_completed" sys_domain="global" view="Default view">8e3d77730fca8b4012e4348ce1050e99</sys_ui_section>
-            <sys_updated_by>gg622</sys_updated_by>
-            <sys_updated_on>2017-11-02 22:24:35</sys_updated_on>
-            <sys_user/>
-            <type>.split</type>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>sys_created_by</element>
-            <position>3</position>
-            <sys_created_by>gg622</sys_created_by>
-            <sys_created_on>2017-11-02 22:24:35</sys_created_on>
-            <sys_id>e59d3b730fca8b4012e4348ce1050e6b</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_casus_swt_work_completed" sys_domain="global" view="Default view">8e3d77730fca8b4012e4348ce1050e99</sys_ui_section>
-            <sys_updated_by>gg622</sys_updated_by>
-            <sys_updated_on>2017-11-02 22:24:35</sys_updated_on>
+            <sys_updated_on>2017-11-08 00:48:10</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>other_info</element>
-            <position>4</position>
+            <position>2</position>
             <sys_created_by>gg622</sys_created_by>
-            <sys_created_on>2017-11-02 22:24:35</sys_created_on>
-            <sys_id>699d3b730fca8b4012e4348ce1050e6b</sys_id>
+            <sys_created_on>2017-11-08 00:48:10</sys_created_on>
+            <sys_id>3d6e8a650f92430012e4348ce1050e83</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_casus_swt_work_completed" sys_domain="global" view="Default view">8e3d77730fca8b4012e4348ce1050e99</sys_ui_section>
             <sys_updated_by>gg622</sys_updated_by>
-            <sys_updated_on>2017-11-02 22:24:35</sys_updated_on>
+            <sys_updated_on>2017-11-08 00:48:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>3</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-11-08 00:48:10</sys_created_on>
+            <sys_id>bd6e8a650f92430012e4348ce1050e83</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_swt_work_completed" sys_domain="global" view="Default view">8e3d77730fca8b4012e4348ce1050e99</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-11-08 00:48:10</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>sys_created_by</element>
+            <position>4</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-11-08 00:48:10</sys_created_on>
+            <sys_id>316e8a650f92430012e4348ce1050e84</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_swt_work_completed" sys_domain="global" view="Default view">8e3d77730fca8b4012e4348ce1050e99</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-11-08 00:48:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>faculty</element>
+            <position>5</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-11-08 00:48:10</sys_created_on>
+            <sys_id>b16e8a650f92430012e4348ce1050e84</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_swt_work_completed" sys_domain="global" view="Default view">8e3d77730fca8b4012e4348ce1050e99</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-11-08 00:48:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>course</element>
+            <position>6</position>
+            <sys_created_by>gg622</sys_created_by>
+            <sys_created_on>2017-11-08 00:48:10</sys_created_on>
+            <sys_id>356e8a650f92430012e4348ce1050e84</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_casus_swt_work_completed" sys_domain="global" view="Default view">8e3d77730fca8b4012e4348ce1050e99</sys_ui_section>
+            <sys_updated_by>gg622</sys_updated_by>
+            <sys_updated_on>2017-11-08 00:48:10</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
