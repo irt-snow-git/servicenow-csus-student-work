@@ -331,7 +331,7 @@ body {
 						 <input id="faculty_input" type="text" class="form-control" ng-model="faculty_name"/>
 						<h4 style="padding-top: 10px"> Relevant Course </h4>
 						 <input id="course_input" type="text" class="form-control" ng-model="relevant_course"/>
-                        <h4 style="padding-top: 10px"> Short description </h4>
+                        <h4 style="padding-top: 10px"> Short Description </h4>
                         <input id="details_input" type="text" class="form-control" ng-model="short_description"/>
 						 <!-- Need different button for submitting other vs regular work type -->
                         <button class="btn btn-submit-other" 
@@ -366,7 +366,7 @@ body {
         <sys_created_on>2017-11-02 22:32:56</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>701f73b30fca8b4012e4348ce1050e8b</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Submit Work Completed</sys_name>
         <sys_package display_value="Student Work Tracking" source="x_casus_swt">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_package>
         <sys_policy/>
@@ -374,6 +374,6 @@ body {
         <sys_scope display_value="Student Work Tracking">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_scope>
         <sys_update_name>sys_ui_page_701f73b30fca8b4012e4348ce1050e8b</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-11-08 00:41:29</sys_updated_on>
+        <sys_updated_on>2017-12-01 20:10:41</sys_updated_on>
     </sys_ui_page>
 </record_update>
