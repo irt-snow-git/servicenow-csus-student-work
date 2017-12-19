@@ -16,7 +16,7 @@
         <sys_update_name>sys_security_acl_role_e7587bbf0f8a8b4012e4348ce1050ebe</sys_update_name>
         <sys_updated_by>gg622</sys_updated_by>
         <sys_updated_on>2017-11-02 22:01:47</sys_updated_on>
-        <sys_user_role display_value="x_casus_swt_work_completed_user" name="x_casus_swt_work_completed_user">ea58b3fb0f8a8b4012e4348ce1050eb1</sys_user_role>
+        <sys_user_role display_value="x_casus_swt.manager" name="x_casus_swt.manager">ea58b3fb0f8a8b4012e4348ce1050eb1</sys_user_role>
         <transaction_id/>
     </sys_security_acl_role>
 </record_update>

@@ -2,7 +2,7 @@
 <record_update sys_domain="global" table="sys_app_module">
     <sys_app_module action="INSERT_OR_UPDATE">
         <active>true</active>
-        <application display_value="Work Type">b3fb7f330fca8b4012e4348ce1050e71</application>
+        <application display_value="Student Work Tracking">5b58b3fb0f8a8b4012e4348ce1050eb4</application>
         <assessment/>
         <content_page/>
         <device_type/>
@@ -15,11 +15,11 @@
         <mobile_title>Work Types</mobile_title>
         <mobile_view_name>Mobile</mobile_view_name>
         <name>x_casus_swt_work_type</name>
-        <order/>
+        <order>200</order>
         <override_menu_roles>false</override_menu_roles>
         <query/>
         <report/>
-        <roles>x_casus_swt_work_type_user</roles>
+        <roles>x_casus_swt.manager</roles>
         <survey/>
         <survey_overwrite>true</survey_overwrite>
         <sys_class_name>sys_app_module</sys_class_name>
@@ -28,7 +28,7 @@
         <sys_customer_update>true</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_id>7ffb7f330fca8b4012e4348ce1050e71</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Work Types</sys_name>
         <sys_overrides/>
         <sys_package display_value="Student Work Tracking" source="x_casus_swt">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_package>
@@ -36,8 +36,8 @@
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Student Work Tracking">c2b3b3fb0f8a8b4012e4348ce1050e9b</sys_scope>
         <sys_update_name>sys_app_module_7ffb7f330fca8b4012e4348ce1050e71</sys_update_name>
-        <sys_updated_by>gg622</sys_updated_by>
-        <sys_updated_on>2017-11-02 22:17:38</sys_updated_on>
+        <sys_updated_by>nicholasmyers</sys_updated_by>
+        <sys_updated_on>2017-12-19 20:33:18</sys_updated_on>
         <timeline_page/>
         <title>Work Types</title>
         <u_basic_module/>
